@@ -1,30 +1,23 @@
 package iti.daos;
 
+import java.util.List;
+
 import iti.entities.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 
 public class ProductDao {
     private EntityManagerFactory emf;
     private EntityManager em;
 
     public ProductDao(){
-        emf =Persistence.createEntityManagerFactory("ecommerce");
+        emf = Persistence.createEntityManagerFactory("ecommerce");
         em = emf.createEntityManager();
     }
 
-    //getAll => GET
-    //getOne => GET
-    //addOne => POST
-    //editOne => PATCH
-    //deleteOne => DELETE
-
-    /*
-    ** URL products [getAll & addOne]
-    ** URL profuct/{id} [getOne & editOne & deleteOne]
-    */
-
+   
     public Product getProductById(long id){
         //return service.findProduct(id);
         Product product = em.find(Product.class, id);
@@ -36,4 +29,15 @@ public class ProductDao {
             return null;
         }
     }
+    public List<Product> getAllProducts(){
+
+        String qlQuery = "SELECT p FROM Product p";
+        Query query = em.createQuery(qlQuery);
+        List<Product> products = query.getResultList();
+        if(products.size() > 0)
+            return products;
+        return null;
+       }
+
+
 }

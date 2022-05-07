@@ -27,6 +27,13 @@ public class Category {
     public Category() {
         products = new ArrayList<>();
     }
+    
+    public Category(String name, List<Product> products) {
+        this.name = name;
+        this.products = products;
+    }
+
+    
 
     public long getId() {
         return id;

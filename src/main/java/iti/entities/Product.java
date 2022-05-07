@@ -28,8 +28,8 @@ public class Product {
         categories = new ArrayList<>();
     }
 
-    public Product(long id, String name, double price, int quantity) {
-        this.id = id;
+    public Product( String name, double price, int quantity) {
+       
         this.name = name;
         this.price = price;
         this.quantity = quantity;

@@ -1,7 +1,10 @@
 package iti.services;
-
+import java.util.List;
+import java.util.stream.Collectors;
 import iti.daos.ProductDao;
-import iti.entities.Product;
+import iti.domain.product.dtos.ProductGetDto;
+import iti.domain.utils.ProductMapper;
+
 
 public class ProductService {
     
@@ -11,17 +14,20 @@ public class ProductService {
         this.dao = new ProductDao();
     }
        
-    public Product findProduct(long id){
-        return dao.getProductById(id);
-    }
+    public ProductGetDto findProduct(long id){
+       var product =  dao.getProductById(id);
+       if(product != null)
+             return ProductMapper.entityToGet(product);
 
-    // @GET
-    // @Path("{id}")
-    // @Produces(MediaType.APPLICATION_JSON)
-    // public ProductDto getProductById(@PathParam("id") int id , @Context UriInfo uriInfo){
-    //     ProductDto dto = productService.getProduct(id);
-    //     dto.addLink(getSelfUri(uriInfo, dto), "self");
-    //     dto.addLink(getResourceUri(uriInfo), "all products");
-    //     return dto;
-    // }
+        return null;
+    }
+    public List<ProductGetDto> getAllProducts(){
+        var productdtos = dao.getAllProducts().stream().map(product ->{
+            return ProductMapper.entityToGet(product);
+        }).collect(Collectors.toList());
+
+        
+        return productdtos;
+    }
+    
 }
