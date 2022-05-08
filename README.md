@@ -1,9 +1,10 @@
-## RESTful E-Commerce Api Using JAX-RS (JERSY As Reference Implementation)
+# RESTful E-Commerce Api
 
-# Description
-An E-Commerce RESTful and SOAP web service using JAX-RS and JAX-WS Apis 
+## Description
+ 
+###An E-Commerce RESTful Using JAX-RS (JERSY As Reference Implementation)
 
-# Documentation For RESTful Api 
+## Documentation For RESTful Api Usage (Resources and Endpoints)
 
 📧 https://documenter.getpostman.com/view/20543906/UyxdL9gi
 
