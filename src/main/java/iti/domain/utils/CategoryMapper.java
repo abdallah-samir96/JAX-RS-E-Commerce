@@ -1,6 +1,7 @@
 package iti.domain.utils;
 
 import iti.domain.category.dtos.CategoryGetDto;
+import iti.domain.category.dtos.CategoryPostDto;
 import iti.entities.Category;
 
 public class CategoryMapper {
@@ -13,7 +14,7 @@ public class CategoryMapper {
     }
 
 
-    public static Category postToEntity( CategoryGetDto categoryPostDto ) {
+    public static Category postToEntity( CategoryPostDto categoryPostDto ) {
         Category category = new Category(categoryPostDto.getName(), null);
         return category;
     }

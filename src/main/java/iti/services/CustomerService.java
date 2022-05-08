@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import iti.daos.CustomerDao;
 import iti.domain.customers.dtos.CustomerGetDto;
+import iti.domain.customers.dtos.CustomerPostDto;
+import iti.domain.utils.CategoryMapper;
 import iti.domain.utils.CustomersMapper;
 
 public class CustomerService {
@@ -30,4 +32,18 @@ public class CustomerService {
         
         return customerdtos;
     }
+
+    public void addCustomer(CustomerPostDto customerDto){
+
+        var customer =  CustomersMapper.postToEntity(customerDto);
+        dao.addCustomer(customer);
+     }
+ 
+     public void deleteCustomer(long id){
+         dao.deleteCustomer(id);
+     }
+ 
+     public void deleteAllCustomers(){
+         dao.deleteAllCustomers();
+     }
 }

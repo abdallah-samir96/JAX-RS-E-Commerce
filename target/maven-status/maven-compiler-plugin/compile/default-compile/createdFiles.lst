@@ -8,6 +8,7 @@ iti\services\ProductService.class
 iti\entities\Order.class
 iti\domain\order\dtos\OrderPostDto.class
 iti\domain\utils\CustomersMapper.class
+iti\domain\links\Link.class
 iti\daos\CustomerDao.class
 iti\daos\ProductDao.class
 iti\entities\Customer.class

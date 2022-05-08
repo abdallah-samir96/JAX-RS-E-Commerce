@@ -3,7 +3,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import iti.daos.ProductDao;
 import iti.domain.product.dtos.ProductGetDto;
+import iti.domain.product.dtos.ProductPostDto;
 import iti.domain.utils.ProductMapper;
+import iti.entities.Product;
 
 
 public class ProductService {
@@ -28,6 +30,20 @@ public class ProductService {
 
         
         return productdtos;
+    }
+    public void addProduct(ProductPostDto product){
+        Product p = ProductMapper.postToEntity(product);
+        dao.addProduct(p);
+
+        
+    }
+
+    public void deleteProduct(long id){
+        dao.deleteProduct(id);
+    }
+
+    public void deleteAllProducts(){
+        dao.deleteAllProduct();
     }
     
 }

@@ -1,11 +1,17 @@
 package iti.domain.customers.dtos;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import iti.domain.links.Link;
+
 public class CustomerGetDto {
     
     private long id;
     private String name;
     private String email;
     private String gender;
+    private List<Link> links = new ArrayList<>();
 
     public CustomerGetDto(){
 
@@ -40,6 +46,13 @@ public class CustomerGetDto {
     public void setGender(String gender) {
         this.gender = gender;
     }
+    public List<Link> getLinks() {
+        return links;
+  }
+
+  public void setLinks(List<Link> links) {
+        this.links = links;
+  }
     @Override
     public String toString() {
         return "CustomerGetDto [email=" + email + ", gender=" + gender + ", id=" + id + ", name=" + name + "]";

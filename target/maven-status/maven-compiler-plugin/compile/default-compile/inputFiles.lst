@@ -17,6 +17,7 @@ F:\Computer\ITI JETS\Web Service\e-commerece\src\main\java\iti\resources\Product
 F:\Computer\ITI JETS\Web Service\e-commerece\src\main\java\iti\domain\customers\dtos\CustomerGetDto.java
 F:\Computer\ITI JETS\Web Service\e-commerece\src\main\java\iti\domain\utils\ProductMapper.java
 F:\Computer\ITI JETS\Web Service\e-commerece\src\main\java\iti\entities\Product.java
+F:\Computer\ITI JETS\Web Service\e-commerece\src\main\java\iti\domain\links\Link.java
 F:\Computer\ITI JETS\Web Service\e-commerece\src\main\java\iti\domain\utils\OrderMapper.java
 F:\Computer\ITI JETS\Web Service\e-commerece\src\main\java\iti\daos\OrderDao.java
 F:\Computer\ITI JETS\Web Service\e-commerece\src\main\java\iti\resources\CustomerResource.java

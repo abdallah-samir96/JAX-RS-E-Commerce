@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import iti.daos.OrderDao;
 import iti.domain.order.dtos.OrderGetDto;
+import iti.domain.order.dtos.OrderPostDto;
 import iti.domain.utils.OrderMapper;
 
 public class OrderService {
@@ -30,4 +31,18 @@ public class OrderService {
         
         return orderdtos;
     }
+
+    public void addOrder(OrderPostDto orderDto){
+
+        var order =  OrderMapper.postToEntity(orderDto);
+        dao.addOrder(order);
+     }
+ 
+     public void deleteOrder(long id){
+         dao.deleteOrder(id);
+     }
+ 
+     public void deleteAllOrders(){
+         dao.deleteAllOrders();
+     }
 }
