@@ -17,9 +17,10 @@
 * Mysql Database
 * Tomcat version 10
 * Maven
-* HATEAOS
+* HATEOAS
 # 🛠 Work With Maven(software project management)
 * Configure Tomcat in pom.xml file 
+* User Configuration in pom.xml in tomcat7 plugin should have <b>manager-script</b> role in tomcat-users.xml in tomcat/config directory.
 * Deploy the application maven using 
 ###### mvn clean package tomcat7:redeploy 
 

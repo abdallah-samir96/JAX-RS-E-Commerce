@@ -24,7 +24,8 @@ public class CustomerResource {
     private CustomerService service;
 
     public CustomerResource(){
-        this.service = new CustomerService();
+        System.out.println("Abdallah Samir Elsayed");
+//        this.service = new CustomerService();
     }
     
     @GET
@@ -85,5 +86,13 @@ public class CustomerResource {
     public Response deleteAllCustomers(){
             service.deleteAllCustomers();
             return Response.ok().status(200).build();
+    }
+
+    @GET
+    @Path("/hello")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response hello(){
+        return Response.ok("Hello From our Application").build();
     }
 }
