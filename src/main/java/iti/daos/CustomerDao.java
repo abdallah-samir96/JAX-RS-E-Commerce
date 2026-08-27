@@ -22,7 +22,7 @@ public class CustomerDao {
         String qlQuery = "SELECT c FROM Customer c";
         Query query = em.createQuery(qlQuery);
         List<Customer> customers = query.getResultList();
-        if (customers.size() > 0)
+        if (!customers.isEmpty())
             return customers;
         return null;
     }
@@ -31,10 +31,7 @@ public class CustomerDao {
 
         Customer customer = em.find(Customer.class, id);
         em.close();
-        if (customer != null)
-            return customer;
-
-        return null;
+        return customer;
     }
 
     public void addCustomer(Customer customer) {

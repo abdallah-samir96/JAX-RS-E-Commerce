@@ -24,8 +24,7 @@ public class CustomerResource {
     private CustomerService service;
 
     public CustomerResource(){
-        System.out.println("Abdallah Samir Elsayed");
-//        this.service = new CustomerService();
+         this.service = new CustomerService();
     }
     
     @GET
