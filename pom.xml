@@ -98,7 +98,7 @@
 <!--                    <path>/ecommerce-api-service</path>-->
 <!--                </configuration>-->
 <!--            </plugin>-->
-
+<!-- compiler is using javac11-->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
