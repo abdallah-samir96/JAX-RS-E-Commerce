@@ -21,7 +21,7 @@ import jakarta.ws.rs.core.UriInfo;
 
 @Path("customers")
 public class CustomerResource {
-    private CustomerService service;
+    private final CustomerService service;
 
     public CustomerResource(){
          this.service = new CustomerService();

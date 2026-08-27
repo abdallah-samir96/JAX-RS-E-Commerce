@@ -2,7 +2,6 @@ package iti.daos;
 
 import iti.domain.utils.JpaUtils;
 import iti.entities.Product;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
 import java.util.List;
