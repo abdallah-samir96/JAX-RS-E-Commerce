@@ -12,6 +12,7 @@ COPY src  ./src
 RUN mvn clean package -DskipTests
 
 
+
 #Stage 2
 
 FROM tomcat:10.0.0-M4-jdk11-adoptopenjdk-openj9
