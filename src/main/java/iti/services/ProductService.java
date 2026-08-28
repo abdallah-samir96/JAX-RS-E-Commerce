@@ -10,7 +10,7 @@ import iti.entities.Product;
 
 public class ProductService {
     
-    private ProductDao dao;
+    private final ProductDao dao;
 
     public ProductService(){
         this.dao = new ProductDao();
@@ -24,18 +24,15 @@ public class ProductService {
         return null;
     }
     public List<ProductGetDto> getAllProducts(){
-        var productdtos = dao.getAllProducts().stream().map(product ->{
-            return ProductMapper.entityToGet(product);
-        }).collect(Collectors.toList());
 
-        
-        return productdtos;
+        return dao.getAllProducts()
+                .stream()
+                .map(ProductMapper::entityToGet)
+                .collect(Collectors.toList());
     }
     public void addProduct(ProductPostDto product){
         Product p = ProductMapper.postToEntity(product);
         dao.addProduct(p);
-
-        
     }
 
     public void deleteProduct(long id){

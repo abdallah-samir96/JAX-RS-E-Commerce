@@ -15,7 +15,7 @@ import jakarta.ws.rs.core.Response;
 @Path("products")
 public class ProductResource {
 
-    private ProductService service;
+    private final ProductService service;
 
     public ProductResource(){
         this.service = new ProductService();
@@ -33,7 +33,6 @@ public class ProductResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllProducts(){
-        // return list of products
         var products = service.getAllProducts();
         return Response.ok().entity(products).build();
     }

@@ -9,8 +9,6 @@ import java.util.List;
 
 public class ProductDao {
 
-
-
     public Product getProductById(long id) {
         var em = JpaUtils.createEntityManager();
         try {
