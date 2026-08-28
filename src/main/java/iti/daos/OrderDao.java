@@ -1,65 +1,73 @@
 package iti.daos;
 
-import java.util.List;
+import iti.domain.utils.JpaUtils;
 import iti.entities.Order;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
-public class OrderDao {
-    private EntityManagerFactory emf;
-    private EntityManager em;
+import java.util.List;
 
-    public OrderDao() {
-        emf = Persistence.createEntityManagerFactory("ecommerce");
-        em = emf.createEntityManager();
-    }
+public class OrderDao {
 
     public Order getOrderById(long id) {
-        // return service.findProduct(id);
-        Order order = em.find(Order.class, id);
-        if (order != null) {
+        var em = JpaUtils.createEntityManager();
+        try {
+            return em.find(Order.class, id);
+        }finally {
             em.close();
-            return order;
-        } else {
-            em.close();
-            return null;
         }
     }
 
     public List<Order> getAllOrders() {
-
-        String qlQuery = "SELECT o FROM Order o";
-        Query query = em.createQuery(qlQuery);
-        List<Order> orders = query.getResultList();
-        if (orders.size() > 0)
-            return orders;
-        return null;
+        var em = JpaUtils.createEntityManager();
+        try {
+            String qlQuery = "SELECT o FROM Order o";
+            Query query = em.createQuery(qlQuery);
+            List<Order> orders = query.getResultList();
+            System.out.println("is the order empty: " + orders.isEmpty() + ", orders: " + orders);
+            if (!orders.isEmpty())
+                 return orders;
+            return List.of();
+        }finally {
+            em.close();;
+        }
     }
 
     public void addOrder(Order order) {
-        em.getTransaction().begin();
-        em.persist(order);
-        em.getTransaction().commit();
+        var em = JpaUtils.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(order);
+            em.getTransaction().commit();
+        }finally {
+            em.close();
+        }
     }
 
     public void deleteOrder(long id) {
-
-        Order order = em.find(Order.class, id);
-        if (order != null) {
-            em.getTransaction().begin();
-            em.remove(order);
-            em.getTransaction().commit();
+        var em = JpaUtils.createEntityManager();
+        try {
+            Order order = em.find(Order.class, id);
+            if (order != null) {
+                em.getTransaction().begin();
+                em.remove(order);
+                em.getTransaction().commit();
+            }
+        }finally {
+            em.close();;
         }
 
     }
 
     public void deleteAllOrders() {
-        em.getTransaction().begin();
-        Query query = em.createNativeQuery("Delete from orders");
-        query.executeUpdate();
-        em.getTransaction().commit();
+        var em = JpaUtils.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Query query = em.createNativeQuery("Delete from orders");
+            query.executeUpdate();
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
     }
 
 }

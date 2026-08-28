@@ -10,7 +10,7 @@ import iti.domain.utils.CategoryMapper;
 
 public class CategoryService {
     
-    private CategoriesDao dao;
+    private final CategoriesDao dao;
 
     public CategoryService(){
         this.dao = new CategoriesDao();
@@ -18,23 +18,18 @@ public class CategoryService {
        
     public CategoryGetDto findCategory(long id){
        var category =  dao.getCategoryById(id);
-       if(category != null)
-            return CategoryMapper.entityToGet(category);
-
-        return null;
+       return (category != null)? CategoryMapper.entityToGet(category): null;
     }
     public List<CategoryGetDto> getAllCategories(){
-        var categorydtos = dao.getAllCategories().stream().map(category ->{
-            return CategoryMapper.entityToGet(category);
-        }).collect(Collectors.toList());
 
-        
-        return categorydtos;
+        return dao.getAllCategories()
+                .stream()
+                .map(CategoryMapper::entityToGet)
+                .collect(Collectors.toList());
     }
 
 
     public void addCategory(CategoryPostDto categoryDto){
-
        var category =  CategoryMapper.postToEntity(categoryDto);
        dao.addCategory(category);
     }

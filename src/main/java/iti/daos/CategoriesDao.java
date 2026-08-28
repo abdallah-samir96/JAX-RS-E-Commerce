@@ -1,65 +1,74 @@
 package iti.daos;
 
-import java.util.List;
+import iti.domain.utils.JpaUtils;
 import iti.entities.Category;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
-public class CategoriesDao {
-    private EntityManagerFactory emf;
-    private EntityManager em;
+import java.util.List;
 
-    public CategoriesDao() {
-        emf = Persistence.createEntityManagerFactory("ecommerce");
-        em = emf.createEntityManager();
-    }
+public class CategoriesDao {
 
     public Category getCategoryById(long id) {
-        Category category = em.find(Category.class, id);
-        if (category != null) {
+        var em = JpaUtils.createEntityManager();
+        try {
+            return em.find(Category.class, id);
+        }finally {
             em.close();
-            return category;
-        } else {
-            em.close();
-            return null;
         }
     }
 
     public List<Category> getAllCategories() {
 
-        String qlQuery = "SELECT c FROM Category c";
-        Query query = em.createQuery(qlQuery);
-        List<Category> categories = query.getResultList();
-        if (categories.size() > 0)
-            return categories;
-        return null;
+        var em = JpaUtils.createEntityManager();
+        try {
+            String qlQuery = "SELECT c FROM Category c";
+            Query query = em.createQuery(qlQuery);
+            List<Category> categories = query.getResultList();
+            if (!categories.isEmpty())
+                return categories;
+            return List.of();
+        } finally {
+            em.close();
+        }
     }
 
     public void addCategory(Category category) {
-        em.getTransaction().begin();
-        em.persist(category);
-        em.getTransaction().commit();
+        var em = JpaUtils.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(category);
+            em.getTransaction().commit();
+        }finally {
+            em.close();
+        }
     }
 
     public void deleteCategory(long id) {
 
-        Category category = em.find(Category.class, id);
-        if (category != null) {
-            em.getTransaction().begin();
-            em.remove(category);
-            em.getTransaction().commit();
+        var em = JpaUtils.createEntityManager();
+        try {
+            Category category = em.find(Category.class, id);
+            if (category != null) {
+                em.getTransaction().begin();
+                em.remove(category);
+                em.getTransaction().commit();
+            }
+        }finally {
+            em.close();
         }
 
     }
 
     public void deleteAllCategories() {
-        em.getTransaction().begin();
-
-        Query query = em.createNativeQuery("Delete from categories");
-        query.executeUpdate();
-        em.getTransaction().commit();
+        var em = JpaUtils.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Query query = em.createNativeQuery("Delete from categories");
+            query.executeUpdate();
+            em.getTransaction().commit();
+        }finally {
+            em.close();
+        }
 
     }
 

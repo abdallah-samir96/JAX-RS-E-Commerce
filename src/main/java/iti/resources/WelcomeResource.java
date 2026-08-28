@@ -16,7 +16,7 @@ public class WelcomeResource {
         var sName = System.getenv(SERVICE_NAME);
         var serviceName = sName!= null? sName: "e-app";
         System.out.println("Welcome to our system");
-        return "Hello From" +serviceName+ "APP";
+        return "Hello From " + serviceName + "APP";
     }
 
 }

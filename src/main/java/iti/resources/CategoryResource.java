@@ -18,7 +18,7 @@ import jakarta.ws.rs.core.Response;
 
 @Path("categories")
 public class CategoryResource {
-    private CategoryService service;
+    private final CategoryService service;
 
     public CategoryResource(){
         this.service = new CategoryService();

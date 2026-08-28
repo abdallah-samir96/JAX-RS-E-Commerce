@@ -30,7 +30,7 @@ public class CustomerResource {
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findCustomer(@PathParam("id") long id,@Context UriInfo uriInfo){
+    public Response findCustomer(@PathParam("id") long id, @Context UriInfo uriInfo){
         String url1 = uriInfo.getBaseUriBuilder().path(CustomerResource.class).path(Integer.toString((int)id)).build().toString();
         String url2 = uriInfo.getBaseUriBuilder().path(CustomerResource.class).build().toString();
         Link self = new Link("self", url1);
@@ -56,9 +56,8 @@ public class CustomerResource {
             customer.getLinks().add(users);
 
         });
-
-        GenericEntity entity = new GenericEntity<List<CustomerGetDto>>(list){};
-        return Response.ok(entity).build();
+        var customers = new GenericEntity<>(list){};
+        return Response.ok(customers).build();
 
     }
     @POST
@@ -85,13 +84,5 @@ public class CustomerResource {
     public Response deleteAllCustomers(){
             service.deleteAllCustomers();
             return Response.ok().status(200).build();
-    }
-
-    @GET
-    @Path("/hello")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response hello(){
-        return Response.ok("Hello From our Application").build();
     }
 }
