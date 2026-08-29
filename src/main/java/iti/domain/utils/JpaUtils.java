@@ -21,6 +21,9 @@ public class JpaUtils {
         return emf.createEntityManager();
     }
     public static void close() {
-        emf.close();
+        if(emf.isOpen()) {
+            System.out.println("Trying to close EMF From " + JpaUtils.class.getName());
+            emf.close();
+        }
     }
 }

@@ -9,14 +9,12 @@ public class CategoryMapper {
 
 
     public static CategoryGetDto entityToGet( Category entity ) {
-        CategoryGetDto getDto = new CategoryGetDto(entity.getId(), entity.getName());
-        return getDto;
+        return new CategoryGetDto(entity.getId(), entity.getName());
     }
 
 
     public static Category postToEntity( CategoryPostDto categoryPostDto ) {
-        Category category = new Category(categoryPostDto.getName(), null);
-        return category;
+        return new Category(categoryPostDto.getName(), null);
     }
 
 }

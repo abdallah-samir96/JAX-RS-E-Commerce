@@ -3,7 +3,6 @@ package iti.daos;
 import iti.domain.utils.JpaUtils;
 import iti.entities.Category;
 import jakarta.persistence.Query;
-
 import java.util.List;
 
 public class CategoriesDao {

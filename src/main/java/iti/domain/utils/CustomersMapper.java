@@ -8,13 +8,11 @@ public class CustomersMapper {
     
 
     public static CustomerGetDto entityToGet( Customer entity ) {
-        CustomerGetDto getDto = new CustomerGetDto(entity.getId(), entity.getName(), entity.getEmail(), entity.getGender());
-        return getDto;
+        return new CustomerGetDto(entity.getId(), entity.getName(), entity.getEmail(), entity.getGender());
     }
 
     public static Customer postToEntity( CustomerPostDto customerPostDto ) {
-        Customer customer = new Customer(null, customerPostDto.getName(), customerPostDto.getEmail(), customerPostDto.getGender());
-        return customer;
+        return new Customer(null, customerPostDto.getName(), customerPostDto.getEmail(), customerPostDto.getGender());
     }
 
 }
